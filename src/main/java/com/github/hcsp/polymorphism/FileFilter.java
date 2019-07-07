@@ -1,9 +1,8 @@
 package com.github.hcsp.polymorphism;
 
 import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class FileFilter {
@@ -25,32 +24,5 @@ public class FileFilter {
      * @param extension 要过滤的文件扩展名，例如 .txt
      * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
      */
-    public static List<String> filter(Path rootDirectory, String extension) throws IOException {
-        ArrayList<String> res = new ArrayList<>();
-        Files.walkFileTree(rootDirectory, new FileVisitor<Path>() {
-            @Override
-            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                return FileVisitResult.CONTINUE;
-            }
-
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                if(file.getFileName().toString().endsWith(extension)) {
-                    res.add(file.getFileName().toString());
-                };
-                return FileVisitResult.CONTINUE;
-            }
-
-            @Override
-            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                return FileVisitResult.CONTINUE;
-            }
-
-            @Override
-            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                return FileVisitResult.CONTINUE;
-            }
-        });
-        return res;
-    }
+    public static List<String> filter(Path rootDirectory, String extension) throws IOException {}
 }
