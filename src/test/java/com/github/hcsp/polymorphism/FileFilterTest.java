@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 public class FileFilterTest {
     @Test
     public void test() throws IOException {
-        Path testPath = Paths.get(System.getProperty("basedir")).resolve("test-root");
+        Path testPath =
+                Paths.get(System.getProperty("basedir", System.getProperty("user.dir")))
+                        .resolve("test-root");
         Assertions.assertEquals(
                 asSet("1.txt", "5.txt", "6.txt"),
                 new HashSet<>(FileFilter.filter(testPath, ".txt")));
