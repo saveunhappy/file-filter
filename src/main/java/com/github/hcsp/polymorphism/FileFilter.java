@@ -1,6 +1,8 @@
 package com.github.hcsp.polymorphism;
 
 import java.io.IOException;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -24,5 +26,9 @@ public class FileFilter {
      * @param extension 要过滤的文件扩展名，例如 .txt
      * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
      */
-    public static List<String> filter(Path rootDirectory, String extension) throws IOException {}
+    public static List<String> filter(Path rootDirectory, String extension) throws IOException {
+        MyFileVisitor fileVisitor = new MyFileVisitor(extension);
+        Files.walkFileTree(rootDirectory, fileVisitor);
+        return fileVisitor.getFiltedFileName();
+    }
 }
