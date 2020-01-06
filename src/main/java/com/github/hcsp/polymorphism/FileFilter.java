@@ -1,10 +1,9 @@
 package com.github.hcsp.polymorphism;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
 
 public class FileFilter {
     public static void main(String[] args) throws IOException {
@@ -22,24 +21,8 @@ public class FileFilter {
      * 实现一个按照扩展名过滤文件的功能
      *
      * @param rootDirectory 要过滤的文件夹
-     * @param extension     要过滤的文件扩展名，例如 .txt
+     * @param extension 要过滤的文件扩展名，例如 .txt
      * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
      */
-    public static List<String> filter(Path rootDirectory, String extension) throws IOException {
-        List<String> filterFiles = new ArrayList<>();
-        Queue<File> fileQueue = new LinkedList<>();
-        File rootDir = new File(rootDirectory.toUri());
-        fileQueue.add(rootDir);
-        while (!fileQueue.isEmpty()) {
-            File file = fileQueue.poll();
-            for (File f : Objects.requireNonNull(file.listFiles())) {
-                if (f.isDirectory()) {
-                    fileQueue.add(f);
-                } else if (f.getName().endsWith(extension)) {
-                    filterFiles.add(f.getName());
-                }
-            }
-        }
-        return filterFiles;
-    }
+    public static List<String> filter(Path rootDirectory, String extension) throws IOException {}
 }
