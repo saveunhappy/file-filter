@@ -1,9 +1,8 @@
 package com.github.hcsp.polymorphism;
 
 import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class FileFilter {
@@ -25,17 +24,5 @@ public class FileFilter {
      * @param extension 要过滤的文件扩展名，例如 .txt
      * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
      */
-    public static List<String> filter(Path rootDirectory, String extension) throws IOException {
-        List<String> results=new ArrayList<>();
-        Files.walkFileTree(rootDirectory,new SimpleFileVisitor<Path>(){
-            @Override
-            public FileVisitResult visitFile(Path path, BasicFileAttributes attrs)throws IOException {
-                if (path.getFileName().toString().endsWith(extension)) {
-                    results.add(path.getFileName().toString());
-                }
-                return FileVisitResult.CONTINUE;
-            }
-        });
-        return results;
-    }
+    public static List<String> filter(Path rootDirectory, String extension) throws IOException {}
 }
